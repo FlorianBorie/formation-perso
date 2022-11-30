@@ -18,11 +18,11 @@ export class FaceSnapListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.destroy$ = new Subject<boolean>();
     this.faceSnaps = this.faceSnapsService.getAllFaceSnaps();
-    interval(1000).subscribe(value => console.log(value !== 3 ? 'Tick' : 'BANG'));
-    //   interval(1000).pipe(     
-  //     takeUntil(this.destroy$), 
-  //     tap(console.log)
-  //   ).subscribe();
+
+    interval(1000).pipe(     
+      takeUntil(this.destroy$), 
+      tap(console.log)
+    ).subscribe();
   }
 
   ngOnDestroy() {
